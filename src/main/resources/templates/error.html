@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{assets/css/error.css}">
+  <meta charset="utf-8">
+  <title>Error</title>
+</head>
+<body>
+<!-- Preloader -->
+<section id="wrapper" class="container-fluid">
+  <div class="error-box">
+    <div class="error-body text-center">
+      <h1 class="text-danger" th:text="${errorCode}"></h1>
+      <h3>Error !</h3>
+      <p class="text-muted m-t-30 m-b-30" th:text="#{smth.went.wrong.header}"> </p>
+      <a href="/index" th:text="#{home.page.link}"></a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

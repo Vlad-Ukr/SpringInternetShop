@@ -1,0 +1,452 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" th:href="@{assets/img/favicon.png}" type="image/png">
+    <title>ListAshop</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{assets/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/linericon/style.css}">
+    <link rel="stylesheet" th:href="@{assets/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/lightbox/simpleLightbox.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/nice-select/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/animate-css/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/vendors/jquery-ui/jquery-ui.css}">
+    <!-- main css -->
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{assets/css/responsive.css}">
+</head>
+<body>
+
+<!--================Header Menu Area =================-->
+<header class="header_area">
+    <div class="top_menu row m0">
+        <div class="container">
+            <div class="float-left">
+                <a href="mailto:support@colorlib.com">support@colorlib.com</a>
+                <a href="#">Welcome to Catalouge</a>
+            </div>
+            <div class="float-right">
+                <ul class="header_social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light main_box">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="index.html"><img th:src="@{img/logo.png}" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <div>
+                        <a th:href="@{'?locale=en'}">EN</a>
+                        <a th:href="@{'?locale=uk'}">UA</a>
+                        <a th:href="@{'?locale=ru'}">RU</a>
+                    </div>
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" href="/index" th:text="#{home.page.link}"></a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false" th:text="#{shop.page.link}"></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="/category"
+                                                        th:text="#{shop.page.category.link}"></a>
+                                <li class="nav-item"><a class="nav-link" href="/checkout"
+                                                        th:text="#{product.checkout.page.link}"></a>
+                                <li class=" nav-item"><a class="nav-link" href="/cart"
+                                                         th:text="#{shopping.cart.page.link}"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false" th:text="#{blog.page.link}"></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="blog.html" th:text="#{blog.page.link}"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false" th:text="#{pages.bar.tab}"></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="/login" th:text="#{login.page.link}">Login</a>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html" th:text="#{contact.page.link}">Contact</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a href="#" class="cart"><i class="lnr lnr lnr-cart"></i></a></li>
+                        <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================Header Menu Area =================-->
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2 th:text="#{checkout.page.header}"></h2>
+                <div class="page_link">
+                    <a href="/index" th:text="#{home.page.link}"></a>
+                    <a href="/checkout" th:text="#{checkout.page.link}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Checkout Area =================-->
+<section class="checkout_area p_120">
+    <form class="row contact_form" action="/payment" method="get">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 th:text="#{billing.details.title}"></h3>
+                        <th:block th:if="${successMessage!=null}">
+                            <h4 style="color: #1e7e34" th:text="${successMessage}"></h4>
+                        </th:block>
+                        <th:block th:if="${emptyCartMessage!=null}">
+                            <h4 style="color: red" th:text="${emptyCartMessage}"></h4>
+                        </th:block>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="radio" name="post" value="np" checked>
+                            <label for="f-option5" th:text="#{new.post.radiobutton}"></label>
+                            <br>
+                            <label for="f-option5" th:text="#{select.your.city.list.title}"></label>
+                            <br>
+                            <select name="citynp" style="padding: 10px; background:#E5ECEE; border:none;">
+                                <option disabled th:text="#{select.city.list.tab}"></option>
+                                <option th:text="#{kyiv.list.tab}"></option>
+                                <option th:text="#{kharkiv.list.tab}"></option>
+                            </select>
+                            <br>
+                            <label for="f-option5" th:text="#{select.near.post.office.title}"></label>
+                            <br>
+                            <select name="postIndexnp" style="padding: 10px; background:#E5ECEE; border:none;">
+                                <option disabled th:text="#{select.post.office.number.title}"></option>
+                                <option>No 29</option>
+                                <option>No 19</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="col-md-6 form-group p_star">
+
+                            <input type="radio" name="post" value="up">
+                            <label for="f-option5" th:text="#{ukr.post.radiobutton}"></label>
+                            <br>
+                            <label for="f-option5" th:text="#{select.your.city.list.title}"></label>
+                            <br>
+                            <select name="cityup" style="padding: 10px; background:#E5ECEE; border:none;">
+                                <option disabled th:text="#{select.city.list.tab}"></option>
+                                <option th:text="#{kyiv.list.tab}"></option>
+                                <option th:text="#{kharkiv.list.tab}"></option>
+                            </select>
+                            <br>
+                            <label for="f-option5" th:text="#{select.near.post.office.title}"></label>
+                            <br>
+                            <select name="postIndexup" style="padding: 10px; background:#E5ECEE; border:none;">
+                                <option disabled th:text="#{select.post.index.title}"></option>
+                                <option>6808</option>
+                                <option>6909</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2 th:text="#{your.order.header}"></h2>
+                            <ul class="list">
+                                <li th:text="#{product}"> <span th:text="#{total}"></span></li>
+                                <th:block th:each="productEntry : ${session.cart.entrySet()}">
+                                    <li><a th:href="${'product?id='+productEntry.getKey().getId()}"
+                                           th:text="${productEntry.getKey().getName()}">
+                                        <span class="middle" th:text="${'x'+productEntry.getValue()}"></span>
+                                        <span class="last"
+                                              th:text="${'$'+productEntry.getKey().getPrice()*productEntry.getValue()}"></span>
+                                    </a>
+                                    </li>
+                                </th:block>
+                            </ul>
+                            <ul class="list list_2" >
+                                <li><a href="#" th:text="#{total}"> <span th:text="${totalPrice.toString()+'$'}"></span></a></li>
+                            </ul>
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="payment" value="1" checked>
+                                    <label for="f-option5" th:text="#{payment.receipt.radiobutton}"></label>
+                                    <div class="check"></div>
+                                </div>
+                            </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="payment" value="0" checked>
+                                    <label for="f-option6" th:text="#{paypal.radiobutton}"></label>
+                                    <img th:src="@{assets/img/product/single-product/card.jpg}" alt="cards">
+                                    <div class="check"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label th:text="#{input.details.title}">
+            </label>
+            <br>
+            <textarea name="detailing" placeholder="..."></textarea>
+            <br>
+            <button class="main_btn" type="submit" th:text="#{make.order.button}"></button>
+        </div>
+    </form>
+</section>
+<!--================End Checkout Area =================-->
+
+
+<!--================Most Product Area =================-->
+<section class="most_product_area">
+    <div class="main_box">
+        <div class="container">
+            <div class="main_title">
+                <h2 th:text="#{most.searched.bar}"></h2>
+                <p th:text="#{eco.friend.title}"></p>
+            </div>
+            <div class="row most_product_inner">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="most_p_list">
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-1.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-2.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-3.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="most_p_list">
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-4.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-5.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-6.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="most_p_list">
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-7.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-8.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-9.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="most_p_list">
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-10.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-11.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="d-flex">
+                                <img th:src="@{assets/img/product/most-product/m-product-12.jpg}" alt="">
+                            </div>
+                            <div class="media-body">
+                                <a href="#"><h4>Black lace Heels</h4></a>
+                                <h3>$189.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Most Product Area =================-->
+
+<!--================ start footer Area  =================-->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title" th:text="#{about.footer.us.info}"></h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6 class="footer_title" th:text="#{newsletter.footer.info}"></h6>
+                    <p th:text="#{stay.update.footer.newsletter.bar}"></p>
+                    <div id="mc_embed_signup">
+                        <form target="_blank"
+                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                              method="get" class="subscribe_form relative">
+                            <div class="input-group d-flex flex-row">
+                                <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                       onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>
+                            </div>
+                            <div class="mt-10 info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-footer-widget instafeed">
+                    <h6 class="footer_title" th:text="#{instagram.footer}"></h6>
+                    <ul class="list instafeed d-flex flex-wrap">
+                        <li><img th:src="@{assets/img/instagram/Image-01.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-02.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-03.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-04.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-05.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-06.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-07.jpg}" alt=""></li>
+                        <li><img th:src="@{assets/img/instagram/Image-08.jpg}" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="single-footer-widget f_social_wd">
+                    <h6 class="footer_title" th:text="#{follow.us.footer}"></h6>
+                    <p th:text="#{follow.us.footer.social.links}"></p>
+                    <div class="f_social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row footer-bottom d-flex justify-content-between align-items-center">
+            <p class="col-lg-12 footer-text text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+    </div>
+</footer>
+<!--================ End footer Area  =================-->
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script th:src="@{assets/js/jquery-3.2.1.min.js}"></script>
+<!-- <script src="js/popper.js"></script>-->
+<script th:src="@{assets/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/js/stellar.js}"></script>
+<script th:src="@{assets/vendors/lightbox/simpleLightbox.min.js}"></script>
+<script th:src="@{assets/vendors/nice-select/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{assets/vendors/isotope/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{assets/vendors/isotope/isotope-min.js}"></script>
+<script th:src="@{assets/vendors/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{assets/js/jquery.ajaxchimp.min.js}"></script>
+<script th:src="@{assets/js/mail-script.js}"></script>
+<script th:src="@{assets/vendors/jquery-ui/jquery-ui.js}"></script>
+<script th:src="@{assets/vendors/counter-up/jquery.waypoints.min.js}"></script>
+<script th:src="@{assets/vendors/counter-up/jquery.counterup.js}"></script>
+<script th:src="@{assets/js/theme.js}"></script>
+</body>
+</html>
